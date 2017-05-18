@@ -12,11 +12,14 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                withEnv(["PATH+NVM=${tool 'nvm'}/bin"]) {
-                    sh 'nvm --version'
-                    sh 'nvm install v7.0.0'
-                    sh 'node --version'
-                    sh 'npm --version'
+                withEnv(["NVM_DIR=${tool 'nvm'}"]) {
+                    sh '''#!/bin/bash
+                    source $NVM_HOME/nvm.sh
+                    nvm --version
+                    nvm install 7
+                    nvm use 7
+                    node --version
+                    npm --version'''
                 }
             }
         }
