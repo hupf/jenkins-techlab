@@ -12,10 +12,11 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                withEnv(["NVM_HOME=${tool 'nvm'}", "YARN_HOME=${tool 'yarn'}"]) {
+                withEnv(["NVM_HOME=${tool 'nvm'}"]) {
                     sh 'nvm --version'
                     sh 'nvm install v7.0.0'
-                    sh 'yarn --version'
+                    sh 'node --version'
+                    sh 'npm --version'
                 }
             }
         }
