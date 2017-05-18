@@ -15,6 +15,7 @@ pipeline {
                 withEnv(["NVM_HOME=${tool 'nvm'}"]) {
                     sh 'nvm --version'
                     sh 'nvm install v7.0.0'
+                    sh 'nvm use v7.0.0'
                     sh 'node --version'
                     sh 'npm --version'
                 }
