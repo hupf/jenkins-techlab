@@ -6,7 +6,7 @@ pipeline {
         buildDiscarder(logRotator(numToKeepStr: '5'))
         timeout(time: 10, unit: 'MINUTES')
         timestamps()  // Timestamper Plugin
-        ansicolor('xterm')  // AnsiColor Plugin
+        //ansicolor('xterm')  // AnsiColor Plugin
     }
     triggers {
         pollSCM('H/5 * * * *')
