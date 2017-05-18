@@ -34,13 +34,13 @@ pipeline {
     }
     post {
         success {
-            mail subject: 'Success', body: "Build success - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)", to: env.CHANGE_AUTHOR_EMAIL
+            mail subject: 'Success', body: "Build success - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)", to: 'hofer@puzzle.ch'
         }
         unstable {
-            mail subject: 'Unstable', body: "Build unstable - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)", to: env.CHANGE_AUTHOR_EMAIL
+            mail subject: 'Unstable', body: "Build unstable - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)", to: 'hofer@puzzle.ch'
         }
         failure {
-            mail subject: 'Failure', body: "Build failure - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)", to: env.CHANGE_AUTHOR_EMAIL
+            mail subject: 'Failure', body: "Build failure - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)", to: 'hofer@puzzle.ch'
         }
     }
 }
