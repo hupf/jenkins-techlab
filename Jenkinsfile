@@ -23,7 +23,8 @@ pipeline {
                     npm install
                     npm test
                 """
-                archiveArtifacts 'junit/*.xml'
+                //archiveArtifacts 'junit/*.xml'
+                junit 'junit/*.xml'
             }
         }
     }
