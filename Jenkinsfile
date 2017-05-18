@@ -6,7 +6,7 @@ pipeline {
         buildDiscarder(logRotator(numToKeepStr: '5'))
         timeout(time: 10, unit: 'MINUTES')
         timestamps()  // Timestamper Plugin
-        //ansicolor('xterm')  // AnsiColor Plugin
+        ansiColor('xterm')  // AnsiColor Plugin
     }
     triggers {
         pollSCM('H/5 * * * *')
@@ -23,14 +23,24 @@ pipeline {
                     npm install
                     npm test
                 """
-                //archiveArtifacts 'junit/*.xml'
-                junit 'junit/*.xml'
+            }
+            post {
+                always {
+                    //archiveArtifacts 'junit/*.xml'
+                    junit 'junit/*.xml'
+                }
             }
         }
     }
-//    post {
-//        always {
-//            notifyPuzzleChat()
-//        }
-//    }
+    post {
+        success {
+            rocketSend avatar: 'https://chat.puzzle.ch/emoji-custom/success.png', channel: 'jenkins-techlab', message: "Build success - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)", rawMessage: true
+        }
+        unstable {
+            rocketSend avatar: 'https://chat.puzzle.ch/emoji-custom/unstable.png', channel: 'jenkins-techlab', message: "Build unstable - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)", rawMessage: true
+        }
+        failure {
+            rocketSend avatar: 'https://chat.puzzle.ch/emoji-custom/failure.png', channel: 'jenkins-techlab', message: "Build failure - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)", rawMessage: true
+        }
+    }
 }
