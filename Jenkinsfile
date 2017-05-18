@@ -20,7 +20,8 @@ pipeline {
                 sh """#!/bin/bash +x
                     source \${HOME}/.nvm/nvm.sh
                     nvm install 7
-                    node --version
+                    npm install
+                    npm test
                 """
             }
         }
