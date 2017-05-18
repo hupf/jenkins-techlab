@@ -1,5 +1,7 @@
-parameters([
-    string(name: 'company_parameter', defaultValue: 'puzzle', description: 'The company the pipeline runs in')
+properties([
+    parameters([
+        string(name: 'company_parameter', defaultValue: 'puzzle', description: 'The company the pipeline runs in')
+    ])
 ])
 
 node {
